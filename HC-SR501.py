@@ -6,8 +6,9 @@ import time #Imports library "time".
 GPIO.setmode(GPIO.BCM) #GPIO.setmode sets a mode, BCM is the actual mode. Everything is included in the RPi library. Alternatively, GPIO.BOARD.
 
 #declair GPIO pins
-TRIG = 23
-ECHO = 24
+
+TRIG = 24
+ECHO = 23
 
 LED = 25
 
@@ -38,7 +39,7 @@ try: #Interrupts the loop when KeyboardInterrupt is true.
         while GPIO.input(ECHO) == 1:
             pulse_End = time.time()
 
-        duration =pulse_end - pulse_Start
+        duration = pulse_End - pulse_Start
         distance = duration * 17150
         distance = round(distance, 2)
 
