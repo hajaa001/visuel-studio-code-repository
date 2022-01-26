@@ -26,7 +26,7 @@ try: #Interrupts the loop when KeyboardInterrupt is true.
 
     while 1: #True = 1.
 
-        GPIO.output(TRIG, FALSE)
+        GPIO.output(TRIG, False)
         time.sleep(1)
 
         GPIO.output(TRIG, True)
@@ -50,7 +50,7 @@ try: #Interrupts the loop when KeyboardInterrupt is true.
             GPIO.output(LED, False)
 
         #Stopping the entire program, and resetting the GPIO-pins.
-        
+
 except KeyboardInterrupt: #Triggered when KeyboardInterrupt is true. This interrupts the loop under "try", and runs this loop instead.
 
         print ("Resetting all GPIO pins to default!")
