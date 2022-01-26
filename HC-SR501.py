@@ -1,4 +1,3 @@
-
 import RPi.GPIO as GPIO #Imports the part of the library RPi called GPIO, as just GPIO.
 import time #Imports library "time".
 
