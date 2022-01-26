@@ -9,13 +9,15 @@ GPIO.setmode(GPIO.BCM) #GPIO.setmode sets a mode, BCM is the actual mode. Everyt
 TRIG = 23
 ECHO = 24
 
-signal = 21
+LED = 25
 
 
 
 #Sets up the pins for echo and trig. Must not be set wrong!
 
-GPIO.setup(signal, GPIO.IN)
+GPIO.setup(ECHO, GPIO.IN)
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(LED, GPIO.OUT)
 
 
 
@@ -24,18 +26,31 @@ try: #Interrupts the loop when KeyboardInterrupt is true.
 
     while 1: #True = 1.
 
-        #Stores the input from sensor, and prints it.
+        GPIO.output(TRIG, FALSE)
+        time.sleep(1)
 
-        val = GPIO.input(sign  al) #.input reads the input to signal, and this is stored in val.
+        GPIO.output(TRIG, True)
+        time.sleep(0.00001)
+        GPIO.output(TRIG, False)
 
-        print(val) #Prints value in the command prompt.
+        while GPIO.input(ECHO) == 0:
+            pulse_Start = time.time()
+        while GPIO.input(ECHO) == 1:
+            pulse_End = time.time()
 
-        time.sleep(0.5) #0.5 seconds delay.
+        duration =pulse_end - pulse_Start
+        distance = duration * 17150
+        distance = round(distance, 2)
 
+        print ("Disance: ", distance, "cm")
 
+        if distance < 10:
+            GPIO.output(LED, True)
+        else:
+            GPIO.output(LED, False)
 
         #Stopping the entire program, and resetting the GPIO-pins.
-
+        
 except KeyboardInterrupt: #Triggered when KeyboardInterrupt is true. This interrupts the loop under "try", and runs this loop instead.
 
         print ("Resetting all GPIO pins to default!")
