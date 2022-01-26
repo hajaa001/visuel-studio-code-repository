@@ -43,7 +43,7 @@ try: #Interrupts the loop when KeyboardInterrupt is true.
         distance = duration * 17150
         distance = round(distance, 2)
 
-        print ("Disance: ", distance, "cm")
+        print ("Distance: ", distance, "cm")
 
         if distance < 10:
             GPIO.output(LED, True)
